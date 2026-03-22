@@ -25,7 +25,9 @@
       "Bash(GIT_DIR=.git git commit -m \"$\\(cat <<''EOF'':*)",
       "Bash(rm -f /Users/eugene.gusakov/.git/index.lock)",
       "Bash(GIT_DIR=.git git commit -m \"fix: replace all след with артефакт in copy:*)",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)"
     ]
   }
 }

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePush } from "@/lib/hooks/use-push";
 import { Button } from "@/components/ui/button";
 
 interface Reminder {
@@ -19,7 +18,14 @@ interface Todo {
 }
 
 export default function SettingsPage() {
-  const { state: pushState, enable: enablePush } = usePush();
+  const [notifState, setNotifState] = useState<NotificationPermission | "idle">(
+    typeof Notification !== "undefined" ? Notification.permission : "idle"
+  );
+
+  async function enableNotifications() {
+    const result = await Notification.requestPermission();
+    setNotifState(result);
+  }
   const [reminders, setReminders] = useState<Reminder[]>([]);
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTime, setNewTime] = useState("10:00");
@@ -96,12 +102,16 @@ export default function SettingsPage() {
             </p>
           </div>
           <Button
-            variant={pushState === "subscribed" ? "secondary" : "primary"}
-            disabled={["requesting", "subscribed", "denied", "unsupported"].includes(pushState)}
-            onClick={enablePush}
+            variant={notifState === "granted" ? "secondary" : "primary"}
+            disabled={notifState === "granted" || notifState === "denied"}
+            onClick={enableNotifications}
             className="w-full"
           >
-            {pushLabel}
+            {notifState === "granted"
+              ? "Уведомления включены ✓"
+              : notifState === "denied"
+                ? "Уведомления заблокированы"
+                : "Включить уведомления"}
           </Button>
         </section>
 

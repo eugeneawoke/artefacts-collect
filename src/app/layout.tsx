@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { BottomNav } from "@/components/ui/bottom-nav";
+import { NotificationScheduler } from "@/components/notification-scheduler";
 
 export const metadata: Metadata = {
   title: "Артефакты",
@@ -33,6 +34,7 @@ export default function RootLayout({
       <body className="min-h-dvh">
         {children}
         <BottomNav />
+        <NotificationScheduler />
       </body>
     </html>
   );
