@@ -74,11 +74,11 @@ function TodoNode({ item, depth, onToggle, onAddChild, onDelete }: TodoNodeProps
           )}
           {item.isCompleted && (
             <Link
-              href={`/menu?todoId=${item.id}`}
+              href={`/capture?description=${encodeURIComponent(item.title)}`}
               className="inline-block mt-1 text-[11px] font-medium px-2 py-0.5 rounded-md
                 bg-[var(--accent)]/15 text-[var(--accent)] hover:bg-[var(--accent)]/25 transition-colors"
             >
-              Получить артефакт →
+              Зафиксировать →
             </Link>
           )}
         </div>
