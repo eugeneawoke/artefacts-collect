@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --no-import-alias --turbopack)",
+      "Bash(npx create-next-app@latest /tmp/artefacts-init --typescript --tailwind --eslint --app --src-dir --no-import-alias --turbopack)",
+      "Bash(npm install:*)",
+      "Bash(npm view:*)",
+      "Bash(timeout 15 npm run dev)",
+      "Bash(npm test:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx vitest:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(GIT_DIR=/Users/eugene.gusakov/.git GIT_WORK_TREE=/Users/eugene.gusakov git add Documents/artefacts-collect/src Documents/artefacts-collect/tests)",
+      "Bash(GIT_DIR=/Users/eugene.gusakov/.git GIT_WORK_TREE=/Users/eugene.gusakov git commit -m \"$\\(cat <<''''EOF'''':*)",
+      "Bash(GIT_DIR=/Users/eugene.gusakov/.git GIT_WORK_TREE=/Users/eugene.gusakov git log --oneline -3)",
+      "Bash(GIT_DIR=/Users/eugene.gusakov/.git GIT_WORK_TREE=/Users/eugene.gusakov git add Documents/artefacts-collect/src/app/page.tsx Documents/artefacts-collect/src/app/menu/page.tsx)",
+      "Bash(GIT_DIR=/Users/eugene.gusakov/.git GIT_WORK_TREE=/Users/eugene.gusakov git commit -m \"$\\(cat <<''EOF'':*)",
+      "Bash(GIT_DIR=/Users/eugene.gusakov/.git GIT_WORK_TREE=/Users/eugene.gusakov git status --short)",
+      "Bash(GIT_DIR=/Users/eugene.gusakov/.git GIT_WORK_TREE=/Users/eugene.gusakov git diff --name-only)",
+      "Bash(GIT_DIR=/Users/eugene.gusakov/.git GIT_WORK_TREE=/Users/eugene.gusakov git add \"Documents/artefacts-collect/src/app/menu/page.tsx\" \"Documents/artefacts-collect/src/app/page.tsx\")",
+      "Read(//Users/eugene.gusakov/**)",
+      "Bash(GIT_DIR=.git git add \"Documents/artefacts-collect/src/app/menu/page.tsx\" \"Documents/artefacts-collect/src/app/page.tsx\")",
+      "Bash(GIT_DIR=.git git commit -m \"$\\(cat <<''EOF'':*)",
+      "Bash(rm -f /Users/eugene.gusakov/.git/index.lock)",
+      "Bash(GIT_DIR=.git git commit -m \"fix: replace all след with артефакт in copy:*)",
+      "Bash(git init:*)"
+    ]
+  }
+}
