@@ -2,6 +2,7 @@ import {
   pgTable,
   uuid,
   text,
+  integer,
   boolean,
   timestamp,
 } from "drizzle-orm/pg-core";
@@ -22,7 +23,7 @@ export const todos = pgTable("todos", {
   parentId: uuid("parent_id"),
   isCompleted: boolean("is_completed").default(false).notNull(),
   artifactId: uuid("artifact_id"),
-  sortOrder: text("sort_order").default("0").notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });

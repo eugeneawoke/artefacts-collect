@@ -81,14 +81,6 @@ export default function SettingsPage() {
     setReminders((prev) => prev.filter((r) => r.id !== id));
   }
 
-  const pushLabel = {
-    idle: "Включить уведомления",
-    requesting: "Запрашиваю разрешение...",
-    subscribed: "Уведомления включены ✓",
-    denied: "Уведомления заблокированы",
-    unsupported: "Не поддерживается",
-  }[pushState];
-
   return (
     <main className="min-h-screen bg-[var(--bg-primary)] px-4 pt-8 pb-24">
       <div className="max-w-lg mx-auto space-y-8">
