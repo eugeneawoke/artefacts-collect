@@ -25,36 +25,46 @@ function getPeriodStart(period: string | null): Date | null {
 }
 
 export async function GET(req: NextRequest) {
-  const period = req.nextUrl.searchParams.get("period");
-  const periodStart = getPeriodStart(period);
+  try {
+    const period = req.nextUrl.searchParams.get("period");
+    const periodStart = getPeriodStart(period);
 
-  const conditions = periodStart
-    ? [gte(artifacts.createdAt, periodStart)]
-    : [];
+    const conditions = periodStart
+      ? [gte(artifacts.createdAt, periodStart)]
+      : [];
 
-  const rows = await db
-    .select()
-    .from(artifacts)
-    .where(conditions.length ? and(...conditions) : undefined)
-    .orderBy(desc(artifacts.createdAt));
+    const rows = await db
+      .select()
+      .from(artifacts)
+      .where(conditions.length ? and(...conditions) : undefined)
+      .orderBy(desc(artifacts.createdAt));
 
-  return NextResponse.json(rows);
+    return NextResponse.json(rows);
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
 }
 
 export async function POST(req: NextRequest) {
-  const body = (await req.json()) as CreateArtifactPayload;
+  try {
+    const body = (await req.json()) as CreateArtifactPayload;
 
-  const [row] = await db
-    .insert(artifacts)
-    .values({
-      id: generateId(),
-      category: body.category,
-      type: body.type,
-      description: body.description,
-      feeling: body.feeling,
-      lesson: body.lesson,
-    })
-    .returning();
+    const [row] = await db
+      .insert(artifacts)
+      .values({
+        id: generateId(),
+        category: body.category,
+        type: body.type,
+        description: body.description,
+        feeling: body.feeling,
+        lesson: body.lesson,
+      })
+      .returning();
 
-  return NextResponse.json(row, { status: 201 });
+    return NextResponse.json(row, { status: 201 });
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : String(e);
+    return NextResponse.json({ error: msg }, { status: 500 });
+  }
 }
