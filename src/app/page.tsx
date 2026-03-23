@@ -3,6 +3,8 @@ import { db } from "@/db/client";
 import { artifacts } from "@/db/schema";
 import { gte } from "drizzle-orm";
 
+export const dynamic = "force-dynamic";
+
 async function getTodayCount() {
   try {
     const today = new Date();
